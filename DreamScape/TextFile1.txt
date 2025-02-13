@@ -1,0 +1,7 @@
+﻿Magic = +30% vuurschade
+Magic = +25% weerstand tegen ijsaanvallen
+Magic = +15% kans om aanvallen te ontwijken
+Magic = Kan vijanden 3 sec verdoven
+Magic = +10% kans op kritieke schade
+Magic = +5 HP per seconde
+Magic = 20% van ontvangen schade
