@@ -34,7 +34,7 @@ namespace DreamScape
 				db.Database.EnsureCreated();
 			}
 
-			var baseWindow = new LoginWindow();
+			var baseWindow = new Pages.LoginWindow();
 
 			baseWindow.Activate();
 			DispatcherQueue.TryEnqueue(() =>

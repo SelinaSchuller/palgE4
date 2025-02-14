@@ -13,7 +13,16 @@
 		<EnableMsixTooling>true</EnableMsixTooling>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Remove="PlayerPages\**" />
+	  <EmbeddedResource Remove="PlayerPages\**" />
+	  <None Remove="PlayerPages\**" />
+	  <Page Remove="PlayerPages\**" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Remove="LoginWindow.xaml" />
+	  <None Remove="Pages\Account\CreateAccountWindow.xaml" />
+	  <None Remove="Pages\Admin\AdminDashboardWindow.xaml" />
+	  <None Remove="PlayerDashboardWindow.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -50,6 +59,11 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Page Update="PlayerDashboardWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
 	  <Page Update="LoginWindow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
@@ -63,4 +77,17 @@
 	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
 	</PropertyGroup>
+	<ItemGroup>
+	  <PRIResource Remove="PlayerPages\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Pages\Admin\AdminDashboardWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Pages\Account\CreateAccountWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
 </Project>

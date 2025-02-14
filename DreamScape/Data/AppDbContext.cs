@@ -30,7 +30,7 @@ namespace DreamScape.Data
 			);
 		}
 
-		private static string HashPassword(string password)
+		public static string HashPassword(string password)
 		{
 			using(SHA256 sha256 = SHA256.Create())
 			{
