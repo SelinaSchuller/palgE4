@@ -19,18 +19,22 @@
 
         <!-- 🔹 Filters Panel -->
         <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,50,0,10">
-            <!-- 🔹 Type Filter -->
             <ComboBox x:Name="TypeFilterComboBox"
                       Width="150"
                       PlaceholderText="Filter op type"
                       SelectionChanged="FilterTypeComboBox_SelectionChanged">
             </ComboBox>
 
-            <!-- 🔹 Statistics Filter -->
-            <ComboBox x:Name="StatisticsFilterComboBox"
-                      Width="150"
-                      PlaceholderText="Filter op statistiek"
-                      SelectionChanged="FilterStatisticComboBox_SelectionChanged">
+            <ComboBox x:Name="SortFilterComboBox"
+                      Width="180"
+                      PlaceholderText="Sorteren op"
+                      SelectionChanged="SortFilterComboBox_SelectionChanged">
+                <ComboBoxItem Content="Sterkte (Hoog-Laag)" Tag="StrengthHigh"/>
+                <ComboBoxItem Content="Sterkte (Laag-Hoog)" Tag="StrengthLow"/>
+                <ComboBoxItem Content="Snelheid (Hoog-Laag)" Tag="SpeedHigh"/>
+                <ComboBoxItem Content="Snelheid (Laag-Hoog)" Tag="SpeedLow"/>
+                <ComboBoxItem Content="Duurzaamheid (Hoog-Laag)" Tag="DurabilityHigh"/>
+                <ComboBoxItem Content="Duurzaamheid (Laag-Hoog)" Tag="DurabilityLow"/>
             </ComboBox>
 
             <!-- 🔹 Reset Filters Button 

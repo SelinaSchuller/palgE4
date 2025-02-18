@@ -10,9 +10,8 @@ namespace DreamScape.Pages
 {
 	public sealed partial class ItemsPage : Page
 	{
-		private List<Item> allItemsOriginal = new List<Item>(); // Stores all original items
-		private List<Item> allItems = new List<Item>(); // Stores currently filtered items
-		private List<Data.Type> allTypes = new List<Data.Type>(); // Stores all item types
+		private List<Item> allItemsOriginal = new List<Item>();
+		private List<Item> allItems = new List<Item>();
 		private List<string> allStatistics = new List<string> { "Strength", "Speed", "Durability" };
 
 		public ItemsPage()
@@ -42,62 +41,74 @@ namespace DreamScape.Pages
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Accessoire 💎", Tag = "Accessoire" });
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Armor 🛡️", Tag = "Armor" });
 
-			// Populate Statistics Filter
-			StatisticsFilterComboBox.Items.Add("Alle Statistieken");
-			foreach(var stat in allStatistics)
-			{
-				StatisticsFilterComboBox.Items.Add(stat);
-			}
-
 			TypeFilterComboBox.SelectedIndex = 0;
-			StatisticsFilterComboBox.SelectedIndex = 0;
+			SortFilterComboBox.SelectedIndex = 0;
 		}
 
 		private void FilterTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ApplyFilters();
+		}
+
+
+		private void SortFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ApplyFilters();
+		}
+
+
+		private void ApplyFilters()
+		{
+			ApplyType();
+			ApplySorting();
+			DispatcherQueue.TryEnqueue(() =>
+			{
+				itemListview.ItemsSource = allItems;
+			});
+		}
+
+		private void ApplyType()
 		{
 			string selectedType = (TypeFilterComboBox.SelectedItem as ComboBoxItem)?.Tag as string;
 
 			if(string.IsNullOrEmpty(selectedType) || selectedType == "All")
 			{
-				allItems = new List<Item>(allItemsOriginal); // Reset to all items
+				allItems = new List<Item>(allItemsOriginal);
 			}
 			else
 			{
 				allItems = allItemsOriginal.Where(i => i.Type.Name == selectedType).ToList();
 			}
-
-			ApplyFilters();
 		}
 
-		private void FilterStatisticComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void ApplySorting()
 		{
-			string selectedStat = StatisticsFilterComboBox.SelectedItem as string;
+			string selectedSort = (SortFilterComboBox.SelectedItem as ComboBoxItem)?.Tag as string;
 
-			if(!string.IsNullOrEmpty(selectedStat) && selectedStat != "Alle Statistieken")
+			if(!string.IsNullOrEmpty(selectedSort))
 			{
-				switch(selectedStat)
+				switch(selectedSort)
 				{
-					case "Strength":
-						allItems = allItems.Where(i => i.Statistics.Strength > 0).ToList();
+					case "StrengthHigh":
+						allItems = allItems.OrderByDescending(i => i.Statistics.Strength).ToList();
 						break;
-					case "Speed":
-						allItems = allItems.Where(i => i.Statistics.Speed > 0).ToList();
+					case "StrengthLow":
+						allItems = allItems.OrderBy(i => i.Statistics.Strength).ToList();
 						break;
-					case "Durability":
-						allItems = allItems.Where(i => i.Statistics.Durability > 0).ToList();
+					case "SpeedHigh":
+						allItems = allItems.OrderByDescending(i => i.Statistics.Speed).ToList();
+						break;
+					case "SpeedLow":
+						allItems = allItems.OrderBy(i => i.Statistics.Speed).ToList();
+						break;
+					case "DurabilityHigh":
+						allItems = allItems.OrderByDescending(i => i.Statistics.Durability).ToList();
+						break;
+					case "DurabilityLow":
+						allItems = allItems.OrderBy(i => i.Statistics.Durability).ToList();
 						break;
 				}
 			}
-
-			ApplyFilters();
-		}
-
-		private void ApplyFilters()
-		{
-			DispatcherQueue.TryEnqueue(() =>
-			{
-				itemListview.ItemsSource = allItems;
-			});
 		}
 	}
 }
