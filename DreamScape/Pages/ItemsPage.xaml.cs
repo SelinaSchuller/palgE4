@@ -41,6 +41,14 @@ namespace DreamScape.Pages
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Accessoire 💎", Tag = "Accessoire" });
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Armor 🛡️", Tag = "Armor" });
 
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Alle Statistieken", Tag = "All" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Sterkte (Hoog-Laag)", Tag = "StrengthHigh" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Sterkte (Laag-Hoog)", Tag = "StrengthLow" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Snelheid (Hoog-Laag)", Tag = "SpeedHigh" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Snelheid (Laag-Hoog)", Tag = "SpeedLow" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Duurzaamheid (Hoog-Laag)", Tag = "DurabilityHigh" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Duurzaamheid (Laag-Hoog)", Tag = "DurabilityLow" });
+
 			TypeFilterComboBox.SelectedIndex = 0;
 			SortFilterComboBox.SelectedIndex = 0;
 		}
@@ -85,7 +93,11 @@ namespace DreamScape.Pages
 		{
 			string selectedSort = (SortFilterComboBox.SelectedItem as ComboBoxItem)?.Tag as string;
 
-			if(!string.IsNullOrEmpty(selectedSort))
+			if(string.IsNullOrEmpty(selectedSort) || selectedSort == "All")
+			{
+				allItems = new List<Item>(allItemsOriginal);
+			}
+			else
 			{
 				switch(selectedSort)
 				{

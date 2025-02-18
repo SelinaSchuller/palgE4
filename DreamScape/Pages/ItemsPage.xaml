@@ -29,12 +29,6 @@
                       Width="180"
                       PlaceholderText="Sorteren op"
                       SelectionChanged="SortFilterComboBox_SelectionChanged">
-                <ComboBoxItem Content="Sterkte (Hoog-Laag)" Tag="StrengthHigh"/>
-                <ComboBoxItem Content="Sterkte (Laag-Hoog)" Tag="StrengthLow"/>
-                <ComboBoxItem Content="Snelheid (Hoog-Laag)" Tag="SpeedHigh"/>
-                <ComboBoxItem Content="Snelheid (Laag-Hoog)" Tag="SpeedLow"/>
-                <ComboBoxItem Content="Duurzaamheid (Hoog-Laag)" Tag="DurabilityHigh"/>
-                <ComboBoxItem Content="Duurzaamheid (Laag-Hoog)" Tag="DurabilityLow"/>
             </ComboBox>
 
             <!-- 🔹 Reset Filters Button 
