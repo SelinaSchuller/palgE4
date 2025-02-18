@@ -74,7 +74,18 @@
                                 BorderBrush="Transparent"
                                 FontSize="14"
                                 Margin="0,5,0,0"
-                                Padding="5"/>
+                                Padding="5"
+                                Width="180"/>
+
+                        <Button Content="⚔️ Items"
+                                Click="ItemsButton_Click"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="14"
+                                Margin="0,5,0,0"
+                                Padding="5"
+                                Width="180"/>
 
                         <Button Content="🎒 Inventaris"
                                 Click="InventoryButton_Click"
@@ -83,16 +94,18 @@
                                 BorderBrush="Transparent"
                                 FontSize="14"
                                 Margin="0,5,0,0"
-                                Padding="5"/>
+                                Padding="5"
+                                Width="180"/>
 
-                        <Button Content="⚙️ Account Instellingen"
+                        <Button Content="⚙️ Account"
                                 Click="SettingsButton_Click"
                                 Background="Transparent"
                                 Foreground="White"
                                 BorderBrush="Transparent"
                                 FontSize="14"
                                 Margin="0,5,0,0"
-                                Padding="5"/>
+                                Padding="5"
+                                Width="180"/>
 
                         <Button Content="🔄 Handelen"
                                 Click="TradeButton_Click"
@@ -101,7 +114,8 @@
                                 BorderBrush="Transparent"
                                 FontSize="14"
                                 Margin="0,5,0,0"
-                                Padding="5"/>
+                                Padding="5"
+                                Width="180"/>
                     </StackPanel>
                 </Border>
 

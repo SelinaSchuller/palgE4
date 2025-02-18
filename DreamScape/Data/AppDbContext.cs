@@ -180,17 +180,20 @@ namespace DreamScape.Data
 				new Type
 				{
 					Id = 1,
-					Name = "Wapen"
+					Name = "Wapen",
+					Icon = "⚔️"
 				},
 				new Type
 				{
 					Id = 2,
-					Name = "Accessoire"
+					Name = "Accessoire",
+					Icon = "💎"
 				},
 				new Type
 				{
 					Id = 3,
-					Name = "Armor"
+					Name = "Armor",
+					Icon = "🛡️"
 				}
 			);
 

@@ -11,6 +11,7 @@
 		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="PlayerPages\**" />
@@ -22,6 +23,8 @@
 	  <None Remove="LoginWindow.xaml" />
 	  <None Remove="Pages\Account\CreateAccountWindow.xaml" />
 	  <None Remove="Pages\Admin\AdminDashboardWindow.xaml" />
+	  <None Remove="Pages\ItemsPage.xaml" />
+	  <None Remove="Pages\Player\PlayerInventoryPage.xaml" />
 	  <None Remove="PlayerDashboardWindow.xaml" />
 	</ItemGroup>
 
@@ -79,6 +82,16 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <PRIResource Remove="PlayerPages\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Pages\ItemsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Pages\Player\PlayerInventoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Pages\Admin\AdminDashboardWindow.xaml">

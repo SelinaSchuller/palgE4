@@ -47,6 +47,11 @@ namespace DreamScape.Pages.Player
 			MainFrame.Navigate(typeof(PlayerDashboardWindow));
 		}
 
+		private void ItemsButton_Click(object sender, RoutedEventArgs e)
+		{
+			MainFrame.Navigate(typeof(ItemsPage), this);
+		}
+
 		private void InventoryButton_Click(object sender, RoutedEventArgs e)
 		{
 			//MainFrame.Navigate(typeof(InventoryPage), this);
