@@ -31,11 +31,9 @@ namespace DreamScape.Pages
 					.ToList();
 			}
 
-			// Initially, show all items
 			allItems = new List<Item>(allItemsOriginal);
 			itemListview.ItemsSource = allItems;
 
-			// Populate Type Filter
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Alle Types", Tag = "All" });
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Wapen ⚔️", Tag = "Wapen" });
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Accessoire 💎", Tag = "Accessoire" });
@@ -48,6 +46,8 @@ namespace DreamScape.Pages
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Snelheid (Laag-Hoog)", Tag = "SpeedLow" });
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Duurzaamheid (Hoog-Laag)", Tag = "DurabilityHigh" });
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Duurzaamheid (Laag-Hoog)", Tag = "DurabilityLow" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Meest zeldzaam (Hoog-Laag)", Tag = "RarityHigh" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Minst zeldzaam (Laag-Hoog)", Tag = "RarityLow" });
 
 			TypeFilterComboBox.SelectedIndex = 0;
 			SortFilterComboBox.SelectedIndex = 0;
@@ -63,7 +63,6 @@ namespace DreamScape.Pages
 		{
 			ApplyFilters();
 		}
-
 
 		private void ApplyFilters()
 		{
@@ -115,6 +114,12 @@ namespace DreamScape.Pages
 						break;
 					case "DurabilityLow":
 						allItems = allItems.OrderBy(i => i.Statistics.Durability).ToList();
+						break;
+					case "RarityHigh":
+						allItems = allItems.OrderByDescending(i => i.Statistics.RarityId).ToList();
+						break;
+					case "RarityLow":
+						allItems = allItems.OrderBy(i => i.Statistics.RarityId).ToList();
 						break;
 				}
 			}

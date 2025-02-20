@@ -17,7 +17,6 @@
                    Foreground="White"
                    Margin="0,0,0,10"/>
 
-        <!-- 🔹 Filters Panel -->
         <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,50,0,10">
             <ComboBox x:Name="TypeFilterComboBox"
                       Width="150"
@@ -26,22 +25,13 @@
             </ComboBox>
 
             <ComboBox x:Name="SortFilterComboBox"
-                      Width="180"
+                      Width="240"
                       PlaceholderText="Sorteren op"
                       SelectionChanged="SortFilterComboBox_SelectionChanged">
             </ComboBox>
 
-            <!-- 🔹 Reset Filters Button 
-            <Button Content="Reset Filters"
-                    Click="ResetFilters_Click"
-                    Background="#00ADB5"
-                    Foreground="White"
-                    BorderBrush="Transparent"
-                    Padding="5"
-                    Width="120"/>-->
         </StackPanel>
 
-        <!-- 🔹 ListView for Items -->
         <ListView x:Name="itemListview"
                   Background="Transparent"
                   Foreground="White"
