@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.EntityFrameworkCore;
 using DreamScape.Data;
+using DreamScape.ContentDialogs;
 
 namespace DreamScape.Pages
 {
@@ -27,6 +28,7 @@ namespace DreamScape.Pages
 				allItemsOriginal = db.Items
 					.Include(i => i.Type)
 					.Include(i => i.Statistics)
+					.ThenInclude(s => s.Rarity)
 					.OrderBy(i => i.Name)
 					.ToList();
 			}
@@ -51,6 +53,15 @@ namespace DreamScape.Pages
 
 			TypeFilterComboBox.SelectedIndex = 0;
 			SortFilterComboBox.SelectedIndex = 0;
+		}
+
+		private async void ItemListView_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			if(e.ClickedItem is Item selectedItem)
+			{
+				var dialog = new ItemDetailsDialog(selectedItem, this.XamlRoot);
+				await dialog.ShowAsync();
+			}
 		}
 
 		private void FilterTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

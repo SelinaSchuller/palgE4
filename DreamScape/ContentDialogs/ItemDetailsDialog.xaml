@@ -1,0 +1,41 @@
+<ContentDialog
+    x:Class="DreamScape.ContentDialogs.ItemDetailsDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="{x:Bind SelectedItem.Name, Mode=OneWay}"
+    Background="#222831"
+    Foreground="White"
+    Width="450"
+    CloseButtonText="">
+
+    <Grid Padding="20">
+        <StackPanel Spacing="10">
+            <TextBlock>
+                <Run Text="📜 Type: " FontSize="16" FontWeight="Bold"/>
+                <Run Text="{Binding SelectedItem.Type.Name}" FontSize="14" Foreground="#00ADB5"/>
+            </TextBlock>
+
+            <TextBlock Text="📊 Statistieken:" FontSize="16" FontWeight="Bold"/>
+            <StackPanel Spacing="5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="💪 Strength: " FontSize="14"/>
+                    <TextBlock Text="{Binding SelectedItem.Statistics.Strength}" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="⚡ Speed: " FontSize="14"/>
+                    <TextBlock Text="{Binding SelectedItem.Statistics.Speed}" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🛡 Durability: " FontSize="14"/>
+                    <TextBlock Text="{Binding SelectedItem.Statistics.Durability}" FontSize="14"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🌟 Rarity: " FontSize="14" Foreground="#FFD700"/>
+                    <TextBlock Text="{Binding SelectedItem.Statistics.Rarity.Name}" FontSize="14" Foreground="#FFD700"/>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</ContentDialog>

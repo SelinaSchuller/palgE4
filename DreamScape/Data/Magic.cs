@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DreamScape.Data
 {
-	internal class Magic
+	public class Magic
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }

@@ -20,6 +20,7 @@
 	  <Page Remove="PlayerPages\**" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="ContentDialogs\ItemDetailsDialog.xaml" />
 	  <None Remove="LoginWindow.xaml" />
 	  <None Remove="Pages\Account\CreateAccountWindow.xaml" />
 	  <None Remove="Pages\Admin\AdminDashboardWindow.xaml" />
@@ -100,6 +101,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Pages\Account\CreateAccountWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="ContentDialogs\ItemDetailsDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>

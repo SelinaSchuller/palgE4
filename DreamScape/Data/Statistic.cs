@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DreamScape.Data
 {
-	internal class Statistic
+	public class Statistic
 	{
 		public int Id { get; set; }
 		public int? RequiredLevel { get; set; } //Voor nu nullable

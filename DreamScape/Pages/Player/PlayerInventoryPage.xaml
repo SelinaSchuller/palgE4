@@ -5,11 +5,74 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DreamScape.Pages.Player"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:localData="using:DreamScape.Data"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Padding="20" Background="#1a1a2e">
+        <TextBlock Text="⚔️ Alle Items"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"
+                Margin="0,0,0,10"/>
 
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,50,0,10">
+            <ComboBox x:Name="TypeFilterComboBox"
+                   Width="150"
+                   PlaceholderText="Filter op type"
+                   SelectionChanged="FilterTypeComboBox_SelectionChanged">
+            </ComboBox>
+
+            <ComboBox x:Name="SortFilterComboBox"
+                   Width="240"
+                   PlaceholderText="Sorteren op"
+                   SelectionChanged="SortFilterComboBox_SelectionChanged">
+            </ComboBox>
+
+        </StackPanel>
+
+        <ListView x:Name="itemListview"
+               Background="Transparent"
+               Foreground="White"
+               SelectionMode="None"
+               Height="500"
+               ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="localData:Item">
+                    <Border BorderThickness="1"
+                         BorderBrush="#222831"
+                         CornerRadius="6"
+                         Padding="10"
+                         Margin="5"
+                         Background="#222831">
+
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Name}"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Grid.Column="0"/>
+                            <TextBlock Text="{x:Bind Description}"
+                                    FontSize="14"
+                                    Foreground="LightGray"
+                                    Grid.Column="1"/>
+                            <TextBlock Text="{x:Bind Type.Name}"
+                                    FontSize="14"
+                                    FontWeight="SemiBold"
+                                    Foreground="#00ADB5"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
