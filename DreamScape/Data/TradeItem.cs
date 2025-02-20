@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DreamScape.Data
 {
-	internal class TradeItem
+	public class TradeItem
 	{
 		public int TradeId { get; set; }
 		public Trade Trade { get; set; }

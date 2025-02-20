@@ -44,11 +44,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="localData:Item">
                     <Border BorderThickness="1"
-                    BorderBrush="#222831"
+                    BorderBrush="Transparent"
                     CornerRadius="6"
                     Padding="10"
                     Margin="5"
-                    Background="#222831">
+                    Background="#1a1a2e">
                         <Grid Padding="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*" />

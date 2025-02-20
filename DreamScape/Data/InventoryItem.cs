@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DreamScape.Data
 {
-	internal class InventoryItem
+	public class InventoryItem
 	{
 		public int UserId { get; set; }
 		public User User { get; set; }

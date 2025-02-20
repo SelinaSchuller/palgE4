@@ -172,6 +172,14 @@ namespace DreamScape.Data
 					Password = HashPassword("Thund3r!!"),
 					Email = "thunder@example.com",
 					RoleId = 1
+				},
+				new User
+				{
+					Id = 6,
+					Username = "Lina",
+					Password = HashPassword("f"),
+					Email = "f",
+					RoleId = 1
 				}
 			);
 
@@ -440,6 +448,24 @@ namespace DreamScape.Data
 					UserId = 3,
 					ItemId = 103,
 					Quantity = 1
+				},
+				new InventoryItem
+				{
+					UserId = 6,
+					ItemId = 104,
+					Quantity = 1
+				},
+				new InventoryItem
+				{
+					UserId = 6,
+					ItemId = 105,
+					Quantity = 3
+				},
+				new InventoryItem
+				{
+					UserId = 6,
+					ItemId = 106,
+					Quantity = 2
 				}
 			);
 

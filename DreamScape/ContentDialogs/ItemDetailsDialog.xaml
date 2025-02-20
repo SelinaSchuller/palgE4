@@ -2,7 +2,7 @@
     x:Class="DreamScape.ContentDialogs.ItemDetailsDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Background="#222831"
+    Background="#16213e"
     Foreground="White"
     CloseButtonText="">
 

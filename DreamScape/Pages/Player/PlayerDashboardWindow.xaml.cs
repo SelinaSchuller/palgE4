@@ -54,7 +54,7 @@ namespace DreamScape.Pages.Player
 
 		private void InventoryButton_Click(object sender, RoutedEventArgs e)
 		{
-			//MainFrame.Navigate(typeof(InventoryPage), this);
+			MainFrame.Navigate(typeof(PlayerInventoryPage), this);
 		}
 
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)

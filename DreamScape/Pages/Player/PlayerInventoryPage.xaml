@@ -11,7 +11,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="20" Background="#1a1a2e">
-        <TextBlock Text="⚔️ Alle Items"
+        <TextBlock Text="🎒 Inventaris"
                 FontSize="22"
                 FontWeight="Bold"
                 Foreground="White"
@@ -29,46 +29,54 @@
                    PlaceholderText="Sorteren op"
                    SelectionChanged="SortFilterComboBox_SelectionChanged">
             </ComboBox>
-
         </StackPanel>
 
         <ListView x:Name="itemListview"
-               Background="Transparent"
-               Foreground="White"
-               SelectionMode="None"
-               Height="500"
-               ScrollViewer.VerticalScrollBarVisibility="Auto">
+                   Background="Transparent"
+                   Foreground="White"
+                   SelectionMode="Single"
+                   IsItemClickEnabled="True"
+                   ItemClick="ItemListView_ItemClick"
+                   Height="500"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="localData:Item">
+                <DataTemplate x:DataType="localData:InventoryItem">
                     <Border BorderThickness="1"
-                         BorderBrush="#222831"
-                         CornerRadius="6"
-                         Padding="10"
-                         Margin="5"
-                         Background="#222831">
-
+                 BorderBrush="Transparent"
+                 CornerRadius="6"
+                 Padding="10"
+                 Margin="5"
+                 Background="#0f3460">
                         <Grid Padding="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*" />
                                 <ColumnDefinition Width="3*" />
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Name}"
-                                    FontSize="18"
-                                    FontWeight="Bold"
-                                    Foreground="White"
-                                    Grid.Column="0"/>
-                            <TextBlock Text="{x:Bind Description}"
-                                    FontSize="14"
-                                    Foreground="LightGray"
-                                    Grid.Column="1"/>
-                            <TextBlock Text="{x:Bind Type.Name}"
-                                    FontSize="14"
-                                    FontWeight="SemiBold"
-                                    Foreground="#00ADB5"
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Right"/>
+
+                            <TextBlock Text="{x:Bind Item.Name}"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           Grid.Column="0"/>
+                            <TextBlock Text="{x:Bind Item.Description}"
+                           FontSize="14"
+                           Foreground="LightGray"
+                           Grid.Column="1"/>
+                            <TextBlock Text="{x:Bind Item.Type.Name}"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#00ADB5"
+                           Grid.Column="2"
+                           HorizontalAlignment="Right"/>
+                            <TextBlock Text="{x:Bind Quantity}"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="White"
+                           Grid.Column="3"
+                           HorizontalAlignment="Right"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

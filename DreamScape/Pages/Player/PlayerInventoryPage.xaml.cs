@@ -15,44 +15,48 @@ using Microsoft.UI.Xaml.Navigation;
 using DreamScape.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using DreamScape.ContentDialogs;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace DreamScape.Pages.Player
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class PlayerInventoryPage : Page
-    {
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class PlayerInventoryPage : Page
+	{
 		private int _loggedInUserId { get; set; }
-		private List<Item> allItemsOriginal = new List<Item>();
-		private List<Item> allItems = new List<Item>();
+		private List<InventoryItem> allItemsOriginal = new List<InventoryItem>();
+		private List<InventoryItem> allItems = new List<InventoryItem>();
 		private List<string> allStatistics = new List<string> { "Strength", "Speed", "Durability" };
 		public PlayerInventoryPage()
-        {
-            this.InitializeComponent();
+		{
+			this.InitializeComponent();
 
 			if(Data.User.LoggedInUser != null)
 			{
 				_loggedInUserId = Data.User.LoggedInUser.Id;
 			}
 			LoadItems();
-        }
+		}
 
 		private void LoadItems()
 		{
 			using(var db = new AppDbContext())
 			{
-				allItemsOriginal = db.Items
-					.Include(i => i.Type)
-					.Include(i => i.Statistics)
-					.OrderBy(i => i.Name)
+				allItemsOriginal = db.InventoryItems
+					.Where(ii => ii.UserId == _loggedInUserId)
+					.Include(ii => ii.Item)
+						.ThenInclude(i => i.Type)
+					.Include(ii => ii.Item)
+						.ThenInclude(i => i.Statistics)
+						.ThenInclude(s => s.Rarity)
 					.ToList();
 			}
 
-			allItems = new List<Item>(allItemsOriginal);
+			allItems = new List<InventoryItem>(allItemsOriginal);
 			itemListview.ItemsSource = allItems;
 
 			TypeFilterComboBox.Items.Add(new ComboBoxItem { Content = "Alle Types", Tag = "All" });
@@ -69,9 +73,25 @@ namespace DreamScape.Pages.Player
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Duurzaamheid (Laag-Hoog)", Tag = "DurabilityLow" });
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Meest zeldzaam (Hoog-Laag)", Tag = "RarityHigh" });
 			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Minst zeldzaam (Laag-Hoog)", Tag = "RarityLow" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Aantal (Hoog-Laag)", Tag = "QuantityHigh" });
+			SortFilterComboBox.Items.Add(new ComboBoxItem { Content = "Aantal (Laag-Hoog)", Tag = "QuantityLow" });
 
 			TypeFilterComboBox.SelectedIndex = 0;
 			SortFilterComboBox.SelectedIndex = 0;
+		}
+
+		private async void ItemListView_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			if(e.ClickedItem is InventoryItem inventoryItem)
+			{
+				var selectedItem = inventoryItem.Item;
+
+				if(selectedItem != null)
+				{
+					var dialog = new ItemDetailsDialog(selectedItem, this.XamlRoot);
+					await dialog.ShowAsync();
+				}
+			}
 		}
 
 		private void FilterTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -102,11 +122,11 @@ namespace DreamScape.Pages.Player
 
 			if(string.IsNullOrEmpty(selectedType) || selectedType == "All")
 			{
-				allItems = new List<Item>(allItemsOriginal);
+				allItems = new List<InventoryItem>(allItemsOriginal);
 			}
 			else
 			{
-				allItems = allItemsOriginal.Where(i => i.Type.Name == selectedType).ToList();
+				allItems = allItemsOriginal.Where(ii => ii.Item.Type.Name == selectedType).ToList();
 			}
 		}
 
@@ -119,28 +139,34 @@ namespace DreamScape.Pages.Player
 				switch(selectedSort)
 				{
 					case "StrengthHigh":
-						allItems = allItems.OrderByDescending(i => i.Statistics.Strength).ToList();
+						allItems = allItems.OrderByDescending(ii => ii.Item.Statistics.Strength).ToList();
 						break;
 					case "StrengthLow":
-						allItems = allItems.OrderBy(i => i.Statistics.Strength).ToList();
+						allItems = allItems.OrderBy(ii => ii.Item.Statistics.Strength).ToList();
 						break;
 					case "SpeedHigh":
-						allItems = allItems.OrderByDescending(i => i.Statistics.Speed).ToList();
+						allItems = allItems.OrderByDescending(ii => ii.Item.Statistics.Speed).ToList();
 						break;
 					case "SpeedLow":
-						allItems = allItems.OrderBy(i => i.Statistics.Speed).ToList();
+						allItems = allItems.OrderBy(ii => ii.Item.Statistics.Speed).ToList();
 						break;
 					case "DurabilityHigh":
-						allItems = allItems.OrderByDescending(i => i.Statistics.Durability).ToList();
+						allItems = allItems.OrderByDescending(ii => ii.Item.Statistics.Durability).ToList();
 						break;
 					case "DurabilityLow":
-						allItems = allItems.OrderBy(i => i.Statistics.Durability).ToList();
+						allItems = allItems.OrderBy(ii => ii.Item.Statistics.Durability).ToList();
 						break;
 					case "RarityHigh":
-						allItems = allItems.OrderByDescending(i => i.Statistics.RarityId).ToList();
+						allItems = allItems.OrderByDescending(ii => ii.Item.Statistics.RarityId).ToList();
 						break;
 					case "RarityLow":
-						allItems = allItems.OrderBy(i => i.Statistics.RarityId).ToList();
+						allItems = allItems.OrderBy(ii => ii.Item.Statistics.RarityId).ToList();
+						break;
+					case "QuantityHigh":
+						allItems = allItems.OrderByDescending(ii => ii.Quantity).ToList();
+						break;
+					case "QuantityLow":
+						allItems = allItems.OrderBy(ii => ii.Quantity).ToList();
 						break;
 				}
 			}
