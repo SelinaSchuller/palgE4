@@ -69,6 +69,7 @@ namespace DreamScape.Pages
 		{
 			ApplyType();
 			ApplySorting();
+
 			DispatcherQueue.TryEnqueue(() =>
 			{
 				itemListview.ItemsSource = allItems;
@@ -93,11 +94,7 @@ namespace DreamScape.Pages
 		{
 			string selectedSort = (SortFilterComboBox.SelectedItem as ComboBoxItem)?.Tag as string;
 
-			if(string.IsNullOrEmpty(selectedSort) || selectedSort == "All")
-			{
-				allItems = new List<Item>(allItemsOriginal);
-			}
-			else
+			if(!string.IsNullOrEmpty(selectedSort) && selectedSort != "All")
 			{
 				switch(selectedSort)
 				{
