@@ -40,21 +40,33 @@ namespace DreamScape.Pages.Player
 		private void LoadData()
 		{
 			UsernameTextBlock.Text = User.LoggedInUser.Username;
+
+			DoubleFrames.Visibility = Visibility.Visible;
+			SingleFrame.Visibility = Visibility.Collapsed;
+			MainFrame.Navigate(typeof(ItemsPage), this);
+			MainFrame2.Navigate(typeof(PlayerInventoryPage), this);
 		}
 
 		private void DashboardButton_Click(object sender, RoutedEventArgs e)
 		{
-			MainFrame.Navigate(typeof(PlayerDashboardWindow));
+			DoubleFrames.Visibility = Visibility.Visible;
+			SingleFrame.Visibility = Visibility.Collapsed;
+			MainFrame.Navigate(typeof(ItemsPage), this);
+			MainFrame2.Navigate(typeof(PlayerInventoryPage), this);
 		}
 
 		private void ItemsButton_Click(object sender, RoutedEventArgs e)
 		{
-			MainFrame.Navigate(typeof(ItemsPage), this);
+			DoubleFrames.Visibility = Visibility.Collapsed;
+			SingleFrame.Visibility = Visibility.Visible;
+			SingleFrame.Navigate(typeof(ItemsPage), this);
 		}
 
 		private void InventoryButton_Click(object sender, RoutedEventArgs e)
 		{
-			MainFrame.Navigate(typeof(PlayerInventoryPage), this);
+			DoubleFrames.Visibility = Visibility.Collapsed;
+			SingleFrame.Visibility = Visibility.Visible;
+			SingleFrame.Navigate(typeof(PlayerInventoryPage), this);
 		}
 
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)

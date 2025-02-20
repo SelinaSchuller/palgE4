@@ -119,10 +119,22 @@
                     </StackPanel>
                 </Border>
 
-                <Frame x:Name="MainFrame"
-                       Grid.Column="1"
+                <Frame Grid.Column="1"
                        Margin="10"
-                       Background="Transparent"/>
+                       Background="Transparent"
+                       x:Name="SingleFrame"/>
+
+                <Grid x:Name="DoubleFrames" Grid.Column="1"
+                            Margin="10"
+                            Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Grid.Column="0" x:Name="MainFrame"/>
+                    <Frame Grid.Column="1" x:Name="MainFrame2"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
