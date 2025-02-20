@@ -13,7 +13,12 @@ namespace DreamScape.ContentDialogs
 			this.InitializeComponent();
 			this.SelectedItem = selectedItem;
 			this.XamlRoot = xamlRoot;
-			this.DataContext = this; // ✅ Explicitly set DataContext
+			this.DataContext = this;
+		}
+
+		private void CloseDialog_Click(object sender, RoutedEventArgs e)
+		{
+			this.Hide();
 		}
 	}
 }
