@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using DreamScape.Data;
 using DreamScape.Services;
 using Windows.UI.ApplicationSettings;
+using DreamScape.Pages.Account;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -49,6 +50,11 @@ namespace DreamScape.Pages.Player
 
 		private void DashboardButton_Click(object sender, RoutedEventArgs e)
 		{
+			NavigateToDashboard();	
+		}
+
+		public void NavigateToDashboard()
+		{
 			DoubleFrames.Visibility = Visibility.Visible;
 			SingleFrame.Visibility = Visibility.Collapsed;
 			MainFrame.Navigate(typeof(ItemsPage), this);
@@ -71,7 +77,9 @@ namespace DreamScape.Pages.Player
 
 		private void SettingsButton_Click(object sender, RoutedEventArgs e)
 		{
-			//MainFrame.Navigate(typeof(AccountSettingsPage), this);
+			DoubleFrames.Visibility = Visibility.Collapsed;
+			SingleFrame.Visibility = Visibility.Visible;
+			SingleFrame.Navigate(typeof(EditAccountPage), this);
 		}
 
 		private void TradeButton_Click(object sender, RoutedEventArgs e)

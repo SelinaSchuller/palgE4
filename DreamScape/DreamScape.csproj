@@ -23,6 +23,7 @@
 	  <None Remove="ContentDialogs\ItemDetailsDialog.xaml" />
 	  <None Remove="LoginWindow.xaml" />
 	  <None Remove="Pages\Account\CreateAccountWindow.xaml" />
+	  <None Remove="Pages\Account\EditAccountPage.xaml" />
 	  <None Remove="Pages\Admin\AdminDashboardWindow.xaml" />
 	  <None Remove="Pages\ItemsPage.xaml" />
 	  <None Remove="Pages\Player\PlayerInventoryPage.xaml" />
@@ -83,6 +84,11 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <PRIResource Remove="PlayerPages\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Pages\Account\EditAccountPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Pages\ItemsPage.xaml">
