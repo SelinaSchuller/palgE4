@@ -21,7 +21,7 @@ namespace DreamScape.Pages.Account
 			LoadUserData();
 		}
 
-		private void LoadUserData()
+		public void LoadUserData()
 		{
 			if(User.LoggedInUser != null)
 			{
@@ -102,7 +102,7 @@ namespace DreamScape.Pages.Account
 					{
 						DispatcherQueue.TryEnqueue(() =>
 						{
-							_parentWindow.NavigateToDashboard();
+							_parentWindow.LoadData();
 						});
 					});
 				}
@@ -115,7 +115,7 @@ namespace DreamScape.Pages.Account
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-			_parentWindow.NavigateToDashboard();
+			_parentWindow.LoadData();
 		}
 
 		private bool IsValidEmail(string email)

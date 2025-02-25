@@ -38,7 +38,7 @@ namespace DreamScape.Pages.Player
 			LoadData();
 		}
 
-		private void LoadData()
+		public void LoadData()
 		{
 			UsernameTextBlock.Text = User.LoggedInUser.Username;
 
@@ -50,15 +50,7 @@ namespace DreamScape.Pages.Player
 
 		private void DashboardButton_Click(object sender, RoutedEventArgs e)
 		{
-			NavigateToDashboard();	
-		}
-
-		public void NavigateToDashboard()
-		{
-			DoubleFrames.Visibility = Visibility.Visible;
-			SingleFrame.Visibility = Visibility.Collapsed;
-			MainFrame.Navigate(typeof(ItemsPage), this);
-			MainFrame2.Navigate(typeof(PlayerInventoryPage), this);
+			LoadData();	
 		}
 
 		private void ItemsButton_Click(object sender, RoutedEventArgs e)
