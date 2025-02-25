@@ -44,6 +44,7 @@ namespace DreamScape.Pages.Account
 				username = StringFormats.CapitalizeFirstLetter(username);
 				string email = mailTextBox.Text.Trim();
 				string password = PasswordTextBox.Password.Trim();
+				string confirmPassword = ConfirmPasswordTextBox.Password.Trim();
 
 				if(string.IsNullOrWhiteSpace(username) || username.Length < 3)
 				{
@@ -63,6 +64,12 @@ namespace DreamScape.Pages.Account
 					return;
 				}
 
+				if(password != confirmPassword)
+				{
+					ShowError("❌ Wachtwoorden komen niet overeen.");
+					return;
+				}
+
 				var existingUser = db.Users.FirstOrDefault(u => u.Username == username);
 				if(existingUser != null)
 				{
@@ -77,7 +84,7 @@ namespace DreamScape.Pages.Account
 					Username = username,
 					Email = email,
 					Password = hashedPassword,
-					RoleId = 1 // Default role: Player
+					RoleId = 1 // Standaardrol: Speler
 				};
 
 				db.Users.Add(newUser);
@@ -85,7 +92,7 @@ namespace DreamScape.Pages.Account
 
 				Data.User.LoggedInUser = newUser;
 
-				ShowSuccess("Account succesvol aangemaakt! U wordt nu ingelogd...");
+				ShowSuccess("✅ Account succesvol aangemaakt! U wordt nu ingelogd...");
 
 				Task.Delay(2000).ContinueWith(t =>
 				{
